@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.udea.festivos.dtos.Fecha;
+import com.udea.festivos.dtos.respuestas.RespuestaFestivos;
 import com.udea.festivos.entidades.Festivo;
 import com.udea.festivos.interfaces.IFestivoServicio;
 import com.udea.festivos.repositorios.IFestivoRepositorio;
@@ -109,12 +111,12 @@ public class FestivoServicio implements IFestivoServicio {
         return festivos;
     }
 
-    public List<Date> obtenerFestivos(int año) {
+    public List<RespuestaFestivos> obtenerFestivos(int año) {
         List<Festivo> festivos = repositorio.findAll();
         festivos = calcularFestivos(festivos, año);
-        List<Date> fechas = new ArrayList<Date>();
+        List<RespuestaFestivos> fechas = new ArrayList<RespuestaFestivos>();
         for (final Festivo festivo : festivos) {
-            fechas.add(festivo.getFecha());
+            fechas.add(new RespuestaFestivos(festivo.getTipo().getTipo(),festivo.getFecha().toString()));
         }
         return fechas;
     }

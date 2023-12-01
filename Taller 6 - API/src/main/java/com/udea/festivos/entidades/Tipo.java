@@ -26,4 +26,8 @@ public class Tipo {
     public int getId() {
         return id;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
 }

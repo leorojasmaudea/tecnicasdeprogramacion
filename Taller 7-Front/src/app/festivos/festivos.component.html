@@ -1,0 +1,40 @@
+<mat-toolbar class="mat-primary mat-toolbar-single-row mat-elevatmat-z8 color-barra" color="background">
+    <div class="center">
+      Analisis de festivos
+    </div>
+  </mat-toolbar>
+
+<p>
+    <mat-form-field class="example-full-width">
+        <mat-label>Elija una fecha</mat-label>
+        <input matInput [matDatepicker]="picker" (dateChange)="dateChanged($event)">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button (click)="picker.open()">Elegir</button>
+</p>
+
+<form [formGroup]="datos" class="data-form"  novalidate>
+    <mat-form-field class="campo-texto">
+        <input matInput formControlName="añoConsulta" type="number" placeholder="Ingrese número positivo">
+        <mat-hint>Ingrese un año para obtener sus festivos</mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="consultaFestivos()">Consultar</button>       
+</form>
+<p>
+    <br>
+</p>
+
+<p>
+    <ngx-datatable
+    class="material"
+    [rows]="datosFestivos"
+    [columns]="columnasFestivos"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="50"
+    >
+    </ngx-datatable>
+</p>
+
